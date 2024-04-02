@@ -32,6 +32,15 @@ void AddServices(WebApplicationBuilder builder)
     builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
     builder.Services.AddControllers();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+    });
     builder.Services.AddScoped<ExceptionHandlingMiddleware>();
     AddSwaggerDoc(builder.Services);
     AddRateLimiter(builder.Services);
@@ -55,6 +64,7 @@ void ConfigureMiddleware(WebApplication app)
     app.UseAuthorization();
     app.MapControllers();
     app.UseRateLimiter();
+    app.UseCors("AllowAll");
     ApplyDatabaseMigrations(app.Services);
 }
 void ApplyDatabaseMigrations(IServiceProvider serviceProvider)
