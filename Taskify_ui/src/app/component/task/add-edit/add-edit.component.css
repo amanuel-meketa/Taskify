@@ -1,41 +1,66 @@
 /* CSS for dialog content */
 .dialog-content {
-  display: flex;
-  flex-direction: column;
-  padding: 20px; /* Add padding to all sides */
-  width: 800px; /* Set width to make the form wider */
+  padding: 20px;
+  overflow: hidden; /* Remove scrollbar */
 }
 
 .form-field {
-  width: 80%; /* Set width to 100% */
-  margin-bottom: 15px; /* Adjusted margin */
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.mat-form-field {
-  width: 100%; /* Set width to 100% */
+.button-container {
+  margin-top: 10px; /* Reduce the top margin */
+  margin-bottom: 10px; /* Add a bottom margin */
+  text-align: center;
 }
 
-.mat-form-field-wrapper {
-  padding: 10px; /* Adjusted padding */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none; /* Remove background */
+  border: none;
+  cursor: pointer;
 }
 
-.mat-form-field-flex {
-  flex: 1;
+.close-button:hover .mat-icon {
+  color: #ff0000; /* Change color on hover */
 }
 
-/* Adjust dialog box width */
-.mat-dialog-container {
-  width: 900px; /* Set width of the dialog box container to make it wider */
+.close-button:focus {
+  outline: none; /* Remove focus outline */
 }
 
-/* CSS for dialog actions */
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px; /* Add margin at the top */
+.close-button .mat-icon {
+  font-size: 24px; /* Adjust icon size */
+  color: #000; /* Default icon color */
 }
 
-/* Make buttons rectangular and wider */
-.mat-button {
+button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   min-width: 120px; /* Set a minimum width for the buttons */
+}
+
+button:hover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.close-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-button mat-icon {
+  font-size: 24px;
+  color: red; /* Set color to red */
+}
+
+.close-button:hover mat-icon {
+  color: #ff0000; /* Change color on hover if desired */
 }

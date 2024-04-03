@@ -1,17 +1,26 @@
-<div mat-dialog-content class="dialog-content">
-  <h2>Add Task</h2> <!-- Title for the form -->
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Title</mat-label>
-    <input matInput placeholder="Title" [(ngModel)]="task.title">
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Description</mat-label>
-    <textarea matInput placeholder="Description" [(ngModel)]="task.description" rows="3"></textarea> <!-- Adjusted rows for smaller height -->
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Due Date</mat-label>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a due date" [(ngModel)]="task.dueDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+<h2 mat-dialog-title>
+  Add Task
+  <button mat-stroked mat-dialog-close class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+      <div mat-dialog-content class="dialog-content" [formGroup]="taskForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Title" formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Description" formControlName="description" rows="3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Due Date</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a due date" formControlName="dueDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+<div class="button-container">
+  <button mat-flat-button color="primary" (click)="saveTask()">Save</button>
+  <button mat-flat-button color="warn" (click)="discardChanges()">Discard</button>
 </div>
