@@ -1,0 +1,17 @@
+<div mat-dialog-content class="dialog-content">
+  <h2>Add Task</h2> <!-- Title for the form -->
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Title" [(ngModel)]="task.title">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Description" [(ngModel)]="task.description" rows="3"></textarea> <!-- Adjusted rows for smaller height -->
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Due Date</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a due date" [(ngModel)]="task.dueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>

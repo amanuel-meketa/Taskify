@@ -1,0 +1,61 @@
+.custom-toolbar {
+    background-color: #2c3e50; /* Dark blue */
+    color: #ecf0f1; /* Light gray */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 64px;
+  }
+  
+  .custom-toolbar button {
+    color: #bdc3c7; /* Light gray for icons */
+    transition: background-color 0.3s;
+  }
+  
+  .custom-toolbar button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .app-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .example-icon {
+    padding: 8px;
+    position: relative;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px 8px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  
+  .example-icon:hover .tooltip {
+    visibility: visible;
+  }
+  
+  .favorite-icon .tooltip {
+    top: 40px;
+  }
+  .add-task-button {
+    background-color: #4CAF50; /* Professional green color */
+    color: white; /* Text color */
+  }
+  
+  .add-task-button:hover {
+    background-color: #45a049; /* Darker shade on hover */
+  }
+  

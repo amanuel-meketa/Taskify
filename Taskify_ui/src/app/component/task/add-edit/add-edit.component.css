@@ -1,0 +1,41 @@
+/* CSS for dialog content */
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px; /* Add padding to all sides */
+  width: 800px; /* Set width to make the form wider */
+}
+
+.form-field {
+  width: 80%; /* Set width to 100% */
+  margin-bottom: 15px; /* Adjusted margin */
+}
+
+.mat-form-field {
+  width: 100%; /* Set width to 100% */
+}
+
+.mat-form-field-wrapper {
+  padding: 10px; /* Adjusted padding */
+}
+
+.mat-form-field-flex {
+  flex: 1;
+}
+
+/* Adjust dialog box width */
+.mat-dialog-container {
+  width: 900px; /* Set width of the dialog box container to make it wider */
+}
+
+/* CSS for dialog actions */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; /* Add margin at the top */
+}
+
+/* Make buttons rectangular and wider */
+.mat-button {
+  min-width: 120px; /* Set a minimum width for the buttons */
+}
