@@ -26,4 +26,9 @@ export class ServiceService {
   getTasks(): Observable<any> {
     return this.http.get("http://localhost:5071/api/tasks");
   }
+
+  deleteTasks(id: any): Observable<any> {
+    return this.http.delete(`http://localhost:5071/api/tasks/${id}`);
+  }
+  
 }

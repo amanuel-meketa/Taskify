@@ -15,7 +15,7 @@ import { Task } from './mode/task';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'dueDate', 'status'];
+  displayedColumns: string[] = ['id','title', 'dueDate', 'status', 'action'];
   dataSource!: MatTableDataSource<Task>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,6 +41,15 @@ export class AppComponent implements OnInit {
     }, 
     error: console.log
   })
+ }
+ 
+ deleteTask(id: any){
+  this._taskservice.deleteTasks(id).subscribe({
+    next: (res) => {
+      alert('task deleted sucessfully');
+    },
+    error: console.log
+  });
  }
 
  applyFilter(event: Event) {
