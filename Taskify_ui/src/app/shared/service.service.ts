@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from '../mode/task';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ServiceService {
           console.error('Error:', error);
         }
       );
+  }
+
+  getTasks(): Observable<any> {
+    return this.http.get("http://localhost:5071/api/tasks");
   }
 }
