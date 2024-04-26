@@ -8,6 +8,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Task } from './mode/task';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +22,13 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
- constructor(private dialog:MatDialog, private _taskservice : ServiceService ){}
+ constructor(private _dialog: MatDialog, private _taskservice : ServiceService, private dialog: MatDialog, ){}
   ngOnInit(): void {
    this.getAllTask()
   }
 
  openAddEditTaskForm(){
-  this.dialog.open(AddEditComponent)
+  this._dialog.open(AddEditComponent);
  }
 
  getAllTask()
@@ -43,10 +44,17 @@ export class AppComponent implements OnInit {
   })
  }
  
+ openEditTaskForm(task: Task){
+  this._dialog.open(AddEditComponent, {
+    data: task
+  }); 
+ }
+
  deleteTask(id: any){
   this._taskservice.deleteTasks(id).subscribe({
     next: (res) => {
       alert('task deleted sucessfully');
+      this.getAllTask();
     },
     error: console.log
   });
@@ -59,5 +67,5 @@ export class AppComponent implements OnInit {
   if (this.dataSource.paginator) {
     this.dataSource.paginator.firstPage();
   }
-}
+ }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from 'src/app/mode/task';
 import { ServiceService } from 'src/app/shared/service.service';
 
@@ -8,28 +9,35 @@ import { ServiceService } from 'src/app/shared/service.service';
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.css']
 })
-export class AddEditComponent {
+export class AddEditComponent implements OnInit{
   taskForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: ServiceService) {
-    this.taskForm = this.fb.group({
+  constructor(private _fb: FormBuilder, private _service: ServiceService,
+    private _dialogRef: MatDialogRef<AddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any) {
+    this.taskForm = this._fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       dueDate: [null, Validators.required] // Initialize as null, mark as required
     });
   }
+  ngOnInit(): void {
+    this.taskForm.patchValue(this.data);
+  }
 
   saveTask() {
-    console.log('Saving task...');
-    if (this.taskForm.valid) { // Check if the form is valid
+
+    if (this.taskForm.valid) {
       const formData = this.taskForm.value;
       const task: Task = {
         title: formData.title,
         description: formData.description,
         dueDate: formData.dueDate
       };
-      console.log(task);
-      this.service.addTask(task);
+
+      this._service.addTask(task);
+      alert('task created Sucessfully');
+      this._dialogRef.close(true);
     } else {
       console.log('Form is not valid');
     }
