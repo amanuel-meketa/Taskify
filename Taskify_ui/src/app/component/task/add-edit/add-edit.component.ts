@@ -9,12 +9,12 @@ import { ServiceService } from 'src/app/shared/service.service';
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.css']
 })
-export class AddEditComponent implements OnInit{
+export class AddEditComponent implements OnInit {
   taskForm: FormGroup;
 
   constructor(private _fb: FormBuilder, private _service: ServiceService,
     private _dialogRef: MatDialogRef<AddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.taskForm = this._fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -34,15 +34,20 @@ export class AddEditComponent implements OnInit{
         description: formData.description,
         dueDate: formData.dueDate
       };
-
-      this._service.addTask(task);
-      alert('task created Sucessfully');
-      this._dialogRef.close(true);
+      if (this.data) {
+        this._service.editTask(this.data.id, task);
+        alert('task created Sucessfully');
+        this._dialogRef.close(true);
+      } else {
+        this._service.addTask(task);
+        alert('task created Sucessfully');
+        this._dialogRef.close(true);
+      }
     } else {
       console.log('Form is not valid');
     }
   }
-  
+
   discardChanges() {
     console.log('Discarding changes...');
     this.taskForm.reset();

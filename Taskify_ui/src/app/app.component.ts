@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
     this.getAllTask()
   }
 
-  openAddEditTaskForm() {
-   const resulet = this._dialog.open(AddEditComponent);
-   resulet.afterClosed().subscribe({
+  openAddTaskForm() {
+   const result = this._dialog.open(AddEditComponent);
+   result.afterClosed().subscribe({
     next: (val) => {
       this.getAllTask();
     },
@@ -49,9 +49,14 @@ export class AppComponent implements OnInit {
   }
 
   openEditTaskForm(task: Task) {
-    this._dialog.open(AddEditComponent, {
+   const result = this._dialog.open(AddEditComponent, {
       data: task
     });
+    result.afterClosed().subscribe({
+      next: (val) => {
+        this.getAllTask();
+      },
+     })
   }
 
   deleteTask(id: any) {

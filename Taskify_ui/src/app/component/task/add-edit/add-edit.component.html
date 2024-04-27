@@ -21,6 +21,6 @@
         </mat-form-field>
       </div>
 <div class="button-container">
-  <button mat-flat-button color="primary" (click)="saveTask()">Save</button>
   <button mat-flat-button color="warn" (click)="discardChanges()">Discard</button>
+  <button mat-flat-button color="primary" (click)="saveTask()">{{data ? "Update": "Save"}}</button>
 </div>

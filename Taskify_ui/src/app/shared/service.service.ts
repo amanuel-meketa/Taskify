@@ -15,7 +15,7 @@ export class ServiceService {
     this.http.post('http://localhost:5071/api/tasks', task)
       .subscribe(
         response => {
-          console.log('Post successful:', response);
+          console.log('Added successful:', response);
         },
         error => {
           console.error('Error:', error);
@@ -25,6 +25,19 @@ export class ServiceService {
   
   getTasks(): Observable<any> {
     return this.http.get("http://localhost:5071/api/tasks");
+  }
+
+  editTask(id: any, task: Task) {
+    console.log('Adding task:', task); 
+    this.http.put(`http://localhost:5071/api/tasks/${id}`, task)
+      .subscribe(
+        response => {
+          console.log('Updated successfully:', response);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+      );
   }
 
   deleteTasks(id: any): Observable<any> {
