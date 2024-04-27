@@ -12,7 +12,15 @@ export class ServiceService {
 
   addTask(task: Task) {
     console.log('Adding task:', task); 
-    this.http.post('http://localhost:5071/api/tasks', task);
+    this.http.post('http://localhost:5071/api/tasks', task)
+      .subscribe(
+        response => {
+          console.log('Post successful:', response);
+        },
+        error => {
+          console.error('Error:', error);
+        }
+      );
   }
   
   getTasks(): Observable<any> {

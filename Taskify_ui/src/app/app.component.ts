@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
- constructor(private _dialog: MatDialog, private _taskservice : ServiceService, private dialog: MatDialog, ){}
+ constructor(private _dialog: MatDialog, private _taskservice : ServiceService ){}
   ngOnInit(): void {
    this.getAllTask()
   }
