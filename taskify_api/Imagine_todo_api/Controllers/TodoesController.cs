@@ -11,7 +11,7 @@ namespace Imagine_todo_api.Controllers
     [ApiController]
     [Route("api/tasks")]
     [EnableRateLimiting("FixedPolicy")]
-    [Authorize]
+    //[Authorize]
     public class TasksController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,7 +22,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<ActionResult<List<TodoListDto>>> Get()
         {
             var response = await _mediator.Send(new GetTodoListRequest());
@@ -57,7 +57,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var detailQuerie = new DeleteTodoCommand { Id = id };
@@ -81,7 +81,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPatch("assign-task")]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<ActionResult> AssignTask(Guid taskId, Guid userId)
         {
            var assignQuerie = new AssignTaskCommand
@@ -95,7 +95,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpGet("my-task")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<List<TodoDto>>> Myasks()
         {
             var userId = GetUserIdFromCookie();
@@ -110,7 +110,7 @@ namespace Imagine_todo_api.Controllers
         }
 
         [HttpPatch("{id}/complete")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> CompleteTask(Guid id, [FromBody] string status)
         {
             var approveCommand = new CompleteTaskCommand { ID = id, Status = status };
