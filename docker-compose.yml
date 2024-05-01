@@ -1,24 +1,24 @@
 version: "3.8"
 
 networks:
-    taskify-network:
+    imagine-network:
         driver: bridge
 
 volumes:
-    taskify-db:
+    imagine-db:
     pgadmin-data:
     seq-data:
 
 services:
     imagine_todo_api:
-        image: ${DOCKER_REGISTRY-}taskify_api
+        image: ${DOCKER_REGISTRY-}imaginetodoapi
         build:
-            context: taskify_api
+            context: ./taskify_api
             dockerfile: Dockerfile
         ports:
-            - "8081:8081"
+            - "8080:8080"
         networks:
-            - taskify-network
+            - imagine-network
             
     imagine-database:
         container_name: imagine.database
@@ -30,44 +30,41 @@ services:
         ports:
             - "5432:5432"
         networks:
-            - taskify-network
+            - imagine-network
         volumes:
-            - taskify-db:/var/lib/postgresql/data
+            - imagine-db:/var/lib/postgresql/data
 
     pgadmin:
         container_name: pgadmin
         image: dpage/pgadmin4
         networks:
-            - taskify-network
+            - imagine-network
         restart: always
         environment:
             PGADMIN_DEFAULT_EMAIL: admin@imagine.net
             PGADMIN_DEFAULT_PASSWORD: admin
         ports:
-            - "5050:5050"
+            - "5050:80"
             
     imagine.seq:
         container_name: imagine.seq
         image: datalust/seq:latest
         networks:
-          - taskify-network
+          - imagine-network
         environment:
           - ACCEPT_EULA=Y
         ports:
           - "5341:5341"
-          - "8081:8081"
+          - "8081:80"
         volumes:
           - seq-data:/data
           
     imagine_todo_ui:
         image: ${DOCKER_REGISTRY-}imaginetodoui
         build:
-            context: Taskify_ui
+            context: ./Taskify_ui
             dockerfile: Dockerfile
         ports:
             - "4200:80"
         networks:
-            - taskify-network      
-
-           
-  
+            - imagine-network
