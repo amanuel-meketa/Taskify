@@ -12,7 +12,7 @@ export class ServiceService {
 
   addTask(task: Task) {
     console.log('Adding task:', task); 
-    this.http.post('http://imagine_todo_api:8081/api/tasks', task)
+    this.http.post('http://localhost:8080/api/tasks', task)
       .subscribe(
         response => {
           console.log('Added successful:', response);
@@ -24,12 +24,12 @@ export class ServiceService {
   }
   
   getTasks(): Observable<any> {
-    return this.http.get("http://imagine_todo_api:8081/api/tasks");
+    return this.http.get("http://localhost:8080/api/tasks");
   }
 
   editTask(id: any, task: Task) {
     console.log('Adding task:', task); 
-    this.http.put(`http://imagine_todo_api:8081/api/tasks/${id}`, task)
+    this.http.put(`http://localhost:8081/api/tasks/${id}`, task)
       .subscribe(
         response => {
           console.log('Updated successfully:', response);
@@ -41,7 +41,7 @@ export class ServiceService {
   }
 
   deleteTasks(id: any): Observable<any> {
-    return this.http.delete(`http://imagine_todo_api:8081/api/tasks/${id}`);
+    return this.http.delete(`http://localhost:8080/api/tasks/${id}`);
   }
   
 }
