@@ -1,6 +1,7 @@
 ## Taskify
 
 Taskify is a robust backend Task Management System developed using C# ASP.NET Core 8, designed around Clean Architecture principles. It incorporates key architectural patterns such as MediatoR, CQRS, Automapper, and Repository Pattern. For streamlined deployment and scalability, the system is containerized using Docker and orchestrated with Docker Compose.
+![Taskify design](https://github.com/amanuel-meketa/Taskify/assets/68773212/4649eedd-2e7c-4baf-aca8-d12cef91f756)
 
 ### Features
 - **Token-Based Authentication**
